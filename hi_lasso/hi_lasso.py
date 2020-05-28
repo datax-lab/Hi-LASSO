@@ -1,12 +1,16 @@
+# Author: Jongkwon Jo <jongkwon.jo@gmail.com>
+# License: MIT
+# Date: 28, May 2020
+
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+from . import util, glmnet_model
 from concurrent.futures import ProcessPoolExecutor
 from scipy.stats import norm, binom
 from tqdm import tqdm
 import numpy as np
 import math
-from . import util, glmnet_model
-import warnings
-
-warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 class HiLasso:
@@ -37,15 +41,18 @@ class HiLasso:
     q2: 'auto' or int, optional [default='auto']
         The number of predictors to randomly selecting in Procedure 2.
         When to set 'auto', use q2 as number of samples.        
-    alpha : float [default=0.95]
+    alpha: float [default=0.95]
         confidence level for determination of bootstrap smaple size.
-    d : float [default=0.05]
+    d: float [default=0.05]
         sampling error for determination of boostrap smaple size.
-    B : 'auto' or int, optional [default='auto']
+    B: 'auto' or int, optional [default='auto']
         The number of bootstrap samples.
         When to set 'auto', B is determined by statistical strategy(using alpha and d).   
-    par_opt : Boolean [default=False]
+    par_opt: Boolean [default=False]
         When set to 'True', use parallel processing for bootstrapping.
+    max_workers: 'None' or int, optional [default='None']
+        The number of cores to use for parallel processing.
+        If max_workers is None or not given, it will default to the number of processors on the machine.
         
     
     Attributes
@@ -66,7 +73,7 @@ class HiLasso:
     >>> model.selected_var_ 
     """
 
-    def __init__(self, X, y, q1='auto', q2='auto', B='auto', d=0.05, alpha=0.95, par_opt=False):
+    def __init__(self, X, y, q1='auto', q2='auto', B='auto', d=0.05, alpha=0.95, par_opt=False, max_workers=None):
         self.n, self.p = X.shape
         self.X = np.array(X)
         self.y = np.array(y).ravel()
@@ -77,6 +84,7 @@ class HiLasso:
         self.B = math.floor(norm.ppf(self.alpha, loc=0, scale=1) ** 2 * self.q1 / self.p * (
             1 - self.q1 / self.p) / self.d ** 2) if B == 'auto' else B
         self.par_opt = par_opt
+        self.max_workers = max_workers
 
     def fit(self, significance_level=0.05, sample_weight=None):
         """Fit the model with Procedure 1 and Procedure 2. 
@@ -138,7 +146,7 @@ class HiLasso:
             self.method = 'AdaptiveLASSO'
 
         if self.par_opt:
-            with ProcessPoolExecutor() as executor:
+            with ProcessPoolExecutor(max_workers=self.max_workers) as executor:
                 results = tqdm(executor.map(self._estimate_coef,
                                             np.arange(self.B)), total=self.B)
                 betas = np.array(list(results)).T
