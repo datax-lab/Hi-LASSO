@@ -11,7 +11,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 class HiLasso:
     """
-    HiLASSO(High-Demensinal LASSO) is to improve the LASSO solutions for extremely high-dimensional data. 
+    Hi-LASSO(High-Demensinal LASSO) is to improve the LASSO solutions for extremely high-dimensional data. 
     
     The main contributions of Hi-LASSO are as following:
     
