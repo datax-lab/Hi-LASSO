@@ -2,3 +2,8 @@ numpy
 tqdm
 scipy
 nbsphinx
+python
+ipython 
+nbconvert
+jupyter
+pygments
