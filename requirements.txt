@@ -1,5 +1,6 @@
 numpy
 tqdm
 scipy
-nbsphinx
+sphinx>=1.4
 ipykernel
+nbsphinx
