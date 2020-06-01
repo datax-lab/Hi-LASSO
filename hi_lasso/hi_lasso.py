@@ -3,6 +3,7 @@
 # Date: 28, May 2020
 
 import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 from . import util, glmnet_model
@@ -82,7 +83,7 @@ class HiLasso:
         self.d = d
         self.alpha = alpha
         self.B = math.floor(norm.ppf(self.alpha, loc=0, scale=1) ** 2 * self.q1 / self.p * (
-            1 - self.q1 / self.p) / self.d ** 2) if B == 'auto' else B
+                1 - self.q1 / self.p) / self.d ** 2) if B == 'auto' else B
         self.par_opt = par_opt
         self.max_workers = max_workers
 
