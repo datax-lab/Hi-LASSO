@@ -82,7 +82,7 @@ class HiLasso:
         self.q2 = self.n if q1 == 'auto' else q2
         self.d = d
         self.alpha = alpha
-        self.B = math.floor(norm.ppf(self.alpha, loc=0, scale=1) ** 2 * self.q1 / self.p * (
+        self.B = math.floor(norm.ppf((1-self.alpha)/2, loc=0, scale=1) ** 2 * self.q1 / self.p * (
                 1 - self.q1 / self.p) / self.d ** 2) if B == 'auto' else B
         self.par_opt = par_opt
         self.max_workers = max_workers
