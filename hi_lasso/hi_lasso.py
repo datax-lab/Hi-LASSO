@@ -1,6 +1,6 @@
 # Author: Jongkwon Jo <jongkwon.jo@gmail.com>
 # License: MIT
-# Date: 28, May 2020
+# Date: 3, Jun 2020
 
 import warnings
 
