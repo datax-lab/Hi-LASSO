@@ -17,9 +17,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Hi_Lasso_spark'
-copyright = '2020, Seungha Jeong'
-author = 'Seungha Jeong'
+project = 'Hi_Lasso'
+copyright = '2020, Jongkwon Jo'
+author = 'Jongkwon Jo'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1.1'
