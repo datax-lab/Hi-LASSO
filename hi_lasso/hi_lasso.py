@@ -43,9 +43,9 @@ class HiLasso:
         The number of predictors to randomly selecting in Procedure 2.
         When to set 'auto', use q2 as number of samples.        
     alpha: float [default=0.95]
-        confidence level for determination of bootstrap smaple size.
+        confidence level for determination of bootstrap sample size.
     d: float [default=0.05]
-        sampling error for determination of boostrap smaple size.
+        sampling error for determination of bootstrap sample size.
     B: 'auto' or int, optional [default='auto']
         The number of bootstrap samples.
         When to set 'auto', B is determined by statistical strategy(using alpha and d).   
@@ -82,7 +82,7 @@ class HiLasso:
         self.q2 = self.n if q1 == 'auto' else q2
         self.d = d
         self.alpha = alpha
-        self.B = math.floor(norm.ppf((1-self.alpha)/2, loc=0, scale=1) ** 2 * self.q1 / self.p * (
+        self.B = math.ceil(norm.ppf((1-self.alpha)/2, loc=0, scale=1) ** 2 * self.q1 / self.p * (
                 1 - self.q1 / self.p) / self.d ** 2) if B == 'auto' else B
         self.par_opt = par_opt
         self.max_workers = max_workers
