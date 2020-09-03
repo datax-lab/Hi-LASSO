@@ -56,6 +56,8 @@ class HiLasso:
     max_workers: 'None' or int, optional [default='None']
         The number of cores to use for parallel processing.
         If max_workers is None or not given, it will default to the number of processors on the machine.
+    random_state: int, RandomState instance, [default='None']
+        The seed of the pseudo random number generator that selects a random feature to update.
         
     
     Attributes
