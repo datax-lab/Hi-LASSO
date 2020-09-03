@@ -11,7 +11,9 @@ from concurrent.futures import ProcessPoolExecutor
 from scipy.stats import norm, binom
 from tqdm import tqdm
 import numpy as np
+import binascii
 import math
+import os
 
 
 class HiLasso:
@@ -74,7 +76,7 @@ class HiLasso:
     >>> model.selected_var_ 
     """
 
-    def __init__(self, X, y, q1='auto', q2='auto', B='auto', d=0.05, alpha=0.95, par_opt=False, max_workers=None):
+    def __init__(self, X, y, q1='auto', q2='auto', B='auto', d=0.05, alpha=0.95, par_opt=False, max_workers=None, random_state=None):
         self.n, self.p = X.shape
         self.X = np.array(X)
         self.y = np.array(y).ravel()
@@ -86,6 +88,7 @@ class HiLasso:
                 1 - self.q1 / self.p) / self.d ** 2) if B == 'auto' else B
         self.par_opt = par_opt
         self.max_workers = max_workers
+        self.random_state = random_state
 
     def fit(self, significance_level=0.05, sample_weight=None):
         """Fit the model with Procedure 1 and Procedure 2. 
@@ -164,18 +167,24 @@ class HiLasso:
         """
         # Initialize beta : p by 1 matrix.
         beta = np.empty(self.p)
+        
         # Initialize beta into NANs.
         beta[:] = np.NaN
-        # Set random seed as each bootstrap_number.
-        np.random.seed(bootstrap_number)
+        
+        # Set a random seed for each bootstrap_number.
+        seed = (bootstrap_number + self.random_state if self.random_state else int(binascii.hexlify(os.urandom(4)), 16))        
+        rs = np.random.RandomState(seed)
+        
         # Generate bootstrap index of sample and predictor.
-        bst_sample_idx = np.random.choice(
+        bst_sample_idx = rs.choice(
             np.arange(self.n), size=self.n, replace=True, p=None)
-        bst_predictor_idx = np.random.choice(
+        bst_predictor_idx = rs.choice(
             np.arange(self.p), size=self.q, replace=False, p=self.select_prob)
+        
         # Standardization.
         X_sc, y_sc, x_std = util.standardization(self.X[bst_sample_idx, :][:, bst_predictor_idx],
                                                  self.y[bst_sample_idx])
+        
         # Estimate coefficients.
         coef = glmnet_model.ElasticNet(X_sc, y_sc, sample_weight=self.sample_weight) if self.method == 'ElasticNet' \
             else glmnet_model.AdaptiveLasso(X_sc, y_sc, sample_weight=self.sample_weight,
