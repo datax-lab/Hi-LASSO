@@ -173,7 +173,7 @@ class HiLasso:
         # Initialize beta into NANs.
         beta[:] = np.NaN
         
-        # Set a random seed for each bootstrap_number.
+        # Set a random seed for each bootstrapping.
         seed = (bootstrap_number + self.random_state if self.random_state else int(binascii.hexlify(os.urandom(4)), 16))        
         rs = np.random.RandomState(seed)
         
