@@ -4,4 +4,4 @@ scipy
 sphinx>=1.4
 ipykernel
 nbsphinx
-sklearn
+sklearn=0.22.2
