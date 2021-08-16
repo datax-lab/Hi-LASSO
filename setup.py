@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="hi_lasso",
-    version="0.1.1",
+    version="1.0.5",
     author="Jongkwon Jo",
     author_email="jongkwon.jo@gmail.com",
     description="High-Demensional LASSO",
