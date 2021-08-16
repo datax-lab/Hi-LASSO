@@ -23,24 +23,24 @@ Read the documentation on [readthedocs](https://hi_lasso.readthedocs.io/en/lates
 ```python
 #Data load
 import pandas as pd
-X = pd.read_csv('simulation_data_x.csv')
-y = pd.read_csv('simulation_data_y.csv')
+X = pd.read_csv('https://raw.githubusercontent.com/datax-lab/Hi-LASSO/master/simulation_data/X.csv')
+y = pd.read_csv('https://raw.githubusercontent.com/datax-lab/Hi-LASSO/master/simulation_data/y.csv')
 
 #General Usage
 from hi_lasso.hi_lasso import HiLasso
 
 # Create a HiLasso model
-hi_lasso = HiLasso(X, y)
+hilasso = HiLasso(q1='auto', q2='auto', L=30, alpha=0.05, logistic=False, random_state=None, parallel=False, n_jobs=None)
 
 # Fit the model
-fitted_hi_lasso = hi_lasso.fit()
+hi_lasso.fit(X, y, sample_weight=None)
 
 # Show the coefficients
-fitted_hi_lasso.coef_
+hi_lasso.coef_
 
 # Show the p-values
-fitted_hi_lasso.p_values_
+hi_lasso.p_values_
 
-# Show the selected variable
-fitted_hi_lasso.selected_var_
+# Show the intercept
+hi_lasso.intercept_
 ```
