@@ -20,7 +20,7 @@ python library to process parallel multiprocessing to reduce the time required f
 
    installation
    api_reference
-   Test_package
+   Getting Started
 
 Credit
 ----------
