@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'Hi-LASSO'
-copyright = '2020, Jongkwon Jo'
+copyright = '2021, Jongkwon Jo'
 author = 'Jongkwon Jo'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1'
+release = '1.0.5'
 
 
 # -- General configuration ---------------------------------------------------
