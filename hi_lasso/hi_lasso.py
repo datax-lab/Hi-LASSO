@@ -13,7 +13,6 @@ from tqdm import tqdm
 import numpy as np
 import math
 
-
 class HiLasso:
     """
     Hi-LASSO(High-Demensinal LASSO) is to improve the LASSO solutions for extremely high-dimensional data. 
