@@ -1,5 +1,5 @@
 # Hi-LASSO
-Hi-LASSO(High-Dimensional LASSO) can theoretically improves a LASSO model providing better performance of both prediction and feature selection on extremely 
+High-Dimensional LASSO (Hi-LASSO) can theoretically improves a LASSO model providing better performance of both prediction and feature selection on extremely 
 high-dimensional data.  Hi-LASSO alleviates bias introduced from bootstrapping, refines importance scores, improves the performance taking advantage of 
 global oracle property, provides a statistical strategy to determine the number of bootstrapping, and allows tests of significance for feature selection with 
 appropriate distribution.  In Hi-LASSO will be applied to Use the pool of the python library to process parallel multiprocessing to reduce the time required for 
