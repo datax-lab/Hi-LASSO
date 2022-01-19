@@ -33,14 +33,14 @@ from hi_lasso.hi_lasso import HiLasso
 hilasso = HiLasso(q1='auto', q2='auto', L=30, alpha=0.05, logistic=False, random_state=None, parallel=False, n_jobs=None)
 
 # Fit the model
-hi_lasso.fit(X, y, sample_weight=None)
+hilasso.fit(X, y, sample_weight=None)
 
 # Show the coefficients
-hi_lasso.coef_
+hilasso.coef_
 
 # Show the p-values
-hi_lasso.p_values_
+hilasso.p_values_
 
 # Show the intercept
-hi_lasso.intercept_
+hilasso.intercept_
 ```
