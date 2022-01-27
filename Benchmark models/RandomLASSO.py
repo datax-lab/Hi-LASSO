@@ -1,4 +1,4 @@
-import random_lasso
+from random_lasso import random_lasso
 import record
 import os
 import time
