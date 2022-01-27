@@ -1,4 +1,4 @@
-import hilasso
+from hi_lasso.hi_lasso import HiLasso
 import record
 import os
 import time
