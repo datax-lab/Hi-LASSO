@@ -1,11 +1,11 @@
-import glmnet
+from recursive_random_lasso import recursive_random_lasso
 import record
 import os
 import time
 import numpy as np
 
 random_state = 0
-method = 'ElasticNet'
+method = 'RecursiveRandomLASSO'
 n_iter = 10
 dataset_names = []
 
