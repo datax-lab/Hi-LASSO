@@ -19,6 +19,7 @@ with open(record_path, 'w') as f:
 for data in dataset_names:    
     data_dir = os.path.join('Simulation_Data', data)
     beta = np.load(os.path.join(data_dir, 'beta0.npy'))
+    
     for iter_num in range(n_iter):
         print(iter_num)
         X = np.load(os.path.join(data_dir, f'x_tr{iter_num}.npy'))
