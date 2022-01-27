@@ -33,4 +33,4 @@ for data in dataset_names:
         
         end_time = time.time()
         
-        record.record_result(record_path, method, beta, beta_hat=enet.coef_, exec_time=end_time-start_time)
+        record.record_result(record_path, method, beta, beta_hat=rlasso.coef_, exec_time=end_time-start_time)
