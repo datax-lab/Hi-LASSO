@@ -5,7 +5,7 @@ import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-import util, glmnet_model
+from . import util, glmnet_model
 import time
 from scipy.stats import binom
 from tqdm import tqdm
@@ -86,8 +86,8 @@ class RecursiveRandomLasso:
         self.n, self.p = X.shape
         self.X = np.array(X)
         self.y = np.array(y).ravel()        
-        self.q = self.n if q == 'auto' else q
-        self.B = math.floor(self.L * self.p / self.q) if B == 'auto' else B
+        self.q = self.n if self.q == 'auto' else self.q
+        self.B = math.floor(self.L * self.p / self.q) if self.B == 'auto' else self.B
         self.alpha = alpha
         self.sample_weight = None
                 
