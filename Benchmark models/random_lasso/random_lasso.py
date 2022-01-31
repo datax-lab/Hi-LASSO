@@ -90,9 +90,9 @@ class RandomLasso:
         self.n, self.p = X.shape
         self.X = np.array(X)
         self.y = np.array(y).ravel()
-        self.q1 = self.n if q1 == 'auto' else q1
-        self.q2 = self.n if q2 == 'auto' else q2
-        self.B = math.floor(self.L * self.p / self.q1) if B == 'auto' else B
+        self.q1 = self.n if self.q1 == 'auto' else self.q1
+        self.q2 = self.n if self.q2 == 'auto' else self.q2
+        self.B = math.floor(self.L * self.p / self.q1) if self.B == 'auto' else self.B
         self.sample_weight = np.ones(
             self.n) if sample_weight is None else np.asarray(sample_weight)
         self.select_prob = None
