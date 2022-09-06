@@ -13,10 +13,6 @@ $$
 
 - $\sigma = 3$
 
-
-- Covariance matrix( $ \sigma $ ):
-- 
-
 ### Generation
 
 - $\mathbf{X} \sim N(\mathbf{0}, \sum)$
