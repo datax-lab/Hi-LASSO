@@ -47,10 +47,8 @@ class HiLasso:
     random_state : int or None, optional [default=None]
         If int, random_state is the seed used by the random number generator; 
         If None, the random number generator is the RandomState instance used by np.random.default_rng
-    parallel: Boolean [default=False]
-        When set to 'True', use parallel processing for bootstrapping.
-    n_jobs: 'None' or int, optional [default='None']
-        The number of CPU cores used when parallelizing.
+    n_jobs: 'None' or int, optional [default=1]
+        The number of jobs to run in parallel.
         If "n_jobs is None" or "n_jobs == 0" could use the number of CPU cores returned by "multiprocessing.cpu_count()" for automatic parallelization across all available cores.
         
     
@@ -64,7 +62,7 @@ class HiLasso:
     Examples
     --------
     >>> from hi_lasso import HiLasso
-    >>> model = HiLasso(q1='auto', q2='auto', L=30, logistic=False, random_state=None, parallel=False, n_jobs=None)
+    >>> model = HiLasso(q1='auto', q2='auto', L=30, logistic=False, random_state=None, n_jobs=1)
     >>> model.fit(X, y, sample_weight=None, significance_level=0.05)
     
     >>> model.coef_
@@ -72,15 +70,13 @@ class HiLasso:
     >>> model.p_values_
     """
 
-    def __init__(self, q1='auto', q2='auto', L=30, alpha=0.05, logistic=False, random_state=None, parallel=False,
-                 n_jobs=None):
+    def __init__(self, q1='auto', q2='auto', L=30, alpha=0.05, logistic=False, random_state=None, n_jobs=1):
         self.q1 = q1
         self.q2 = q2
         self.L = L
         self.alpha = alpha
         self.logistic = logistic
         self.random_state = random_state
-        self.parallel = parallel
         self.n_jobs = n_jobs
 
     def fit(self, X, y, sample_weight=None):
@@ -146,7 +142,6 @@ class HiLasso:
     def _bootstrapping(self, mode):
         """
         Apply different methods and q according to 'mode' parameter.
-        Apply parallel processing according to 'parallel' parameter.
         """
         if mode == 'procedure1':
             self.q = self.q1
@@ -156,7 +151,7 @@ class HiLasso:
             self.method = 'AdaptiveLASSO'
         self.B = math.floor(self.L * self.p / self.q)
 
-        if self.parallel:
+        if self.n_jobs != 1:
             with ProcessPoolExecutor(max_workers=self.n_jobs) as executor:
                 results = tqdm(executor.map(self._estimate_coef,
                                             np.arange(self.B)), total=self.B)
