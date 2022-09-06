@@ -16,14 +16,14 @@ $$
 - Covariance matrix $\sum$ :
 
 
-$\sigma^2 \times
+$$\sigma^2 \times
 \begin{bmatrix}
 \sum^{15}_{0.9} & 0 & 0 & 0\\
 0 & \sum^{15}_{0.9} & \mathbf{J}_{0.3} & 0\\
 0 & \mathbf{J}^{T}_{0.3} & \sum^{20}_{0.9} & 0\\
 0 & 0 & 0 & \mathbf{I}^{9950}\\
 \end{bmatrix}
-$
+$$
 
 ### Generation
 
