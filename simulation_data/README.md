@@ -1,7 +1,7 @@
 ## Simulation Data
 
 ### Setting
-- Ground Truth(beta):
+- Ground Truth (beta):
 
 $$
 \begin{cases}
@@ -12,6 +12,8 @@ $$
 
 
 - $\sigma = 3$
+
+- Covariance matrix($\sum$)
 
 ### Generation
 
