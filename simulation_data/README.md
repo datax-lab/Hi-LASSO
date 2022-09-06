@@ -13,7 +13,7 @@ $$
 
 - $\sigma = 3$
 
-- Covariance matrix: $\sum$
+- Covariance matrix $\sum$ :
 
 ### Generation
 
