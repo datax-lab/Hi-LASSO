@@ -1,7 +1,7 @@
 ## Simulation Data
 
 ### Setting
-- Ground Truth($\boldsymbol{\beta}$):    
+- Ground Truth(${\beta}$):    
 
 $$
 \begin{cases}
