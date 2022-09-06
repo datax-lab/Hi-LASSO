@@ -51,7 +51,7 @@ class HiLasso:
         When set to 'True', use parallel processing for bootstrapping.
     n_jobs: 'None' or int, optional [default='None']
         The number of CPU cores used when parallelizing.
-        If n_jobs is None or not given, it will default to the number of processors on the machine.
+        If "n_jobs is None" or "n_jobs == 0" could use the number of CPU cores returned by "multiprocessing.cpu_count()" for automatic parallelization across all available cores.
         
     
     Attributes
