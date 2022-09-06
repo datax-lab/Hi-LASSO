@@ -2,26 +2,28 @@
 
 ### Setting
 - Ground Truth($\boldsymbol{\beta}$):    
-$
+
+$$
 \begin{cases}
-    \beta_j \sim N(0, 4)              & \text{for } j = 1, \dots, number of nonzero features \\
+    \beta_j \sim N(0, 4)              & \text{for } j = 1, \dots, \text{number of nonzero features} \\
     \beta_j = 0              & \text{for } j = 51, \dots, p \\
 \end{cases}
-$
+$$
 
 
 - $\sigma = 3$
 
 
 - Covariance matrix($\sum$):    
-$\sigma^2 \times
+$$
+\sigma^2 \times
 \begin{bmatrix}
 \sum^{15}_{0.9} & 0 & 0 & 0\\
 0 & \sum^{15}_{0.9} & \mathbf{J}_{0.3} & 0\\
 0 & \mathbf{J}^{T}_{0.3} & \sum^{20}_{0.9} & 0\\
 0 & 0 & 0 & \mathbf{I}^{p - number of nonzero features}\\
 \end{bmatrix}
-$
+$$
 
 ### Generation
 
