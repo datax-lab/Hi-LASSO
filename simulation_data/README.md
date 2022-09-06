@@ -1,7 +1,7 @@
 ## Simulation Data
 
 ### Setting
-- Ground Truth(${\beta}$):    
+- Ground Truth($\beta$):    
 
 $$
 \begin{cases}
@@ -21,7 +21,7 @@ $$
 \sum^{15}_{0.9} & 0 & 0 & 0\\
 0 & \sum^{15}_{0.9} & \mathbf{J}_{0.3} & 0\\
 0 & \mathbf{J}^{T}_{0.3} & \sum^{20}_{0.9} & 0\\
-0 & 0 & 0 & \mathbf{I}^{p - number of nonzero features}\\
+0 & 0 & 0 & \mathbf{I}^{p - \text{number of nonzero features}}\\
 \end{bmatrix}
 $$
 
