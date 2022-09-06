@@ -14,6 +14,8 @@ $$
 - $\sigma = 3$
 
 - Covariance matrix $\sum$ :
+
+
 $\sigma^2 \times
 \begin{bmatrix}
 \sum^{15}_{0.9} & 0 & 0 & 0\\
