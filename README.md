@@ -30,7 +30,7 @@ y = pd.read_csv('https://raw.githubusercontent.com/datax-lab/Hi-LASSO/master/sim
 from hi_lasso.hi_lasso import HiLasso
 
 # Create a HiLasso model
-hilasso = HiLasso(q1='auto', q2='auto', L=30, alpha=0.05, logistic=False, random_state=None, parallel=False, n_jobs=None)
+hilasso = HiLasso(q1='auto', q2='auto', L=30, alpha=0.05, logistic=False, random_state=None, n_jobs=None)
 
 # Fit the model
 hilasso.fit(X, y, sample_weight=None)
