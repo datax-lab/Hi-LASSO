@@ -26,7 +26,3 @@ X = rs.multivariate_normal(mean=np.zeros(n_feature), cov=cov, size=n_sample)
 epslion = rs.normal(loc=0, scale=sigma, size=n_sample)
 # generate y
 y = (X @ beta) + epslion
-
-# Save Simulation Data
-X.to_csv('X.csv', index=False)
-y.to_csv('y.csv', index=False)
