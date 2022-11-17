@@ -24,25 +24,12 @@ class RecursiveRandomLasso:
        predictor variables
     y: array-like of shape (n_samples,)
        response variables
-    q1: 'auto' or int, optional [default='auto']
-        The number of predictors to randomly selecting in Procedure 1.
-        When to set 'auto', use q1 as number of samples.
-    q2: 'auto' or int, optional [default='auto']
-        The number of predictors to randomly selecting in Procedure 2.
-        When to set 'auto', use q2 as number of samples.
-    alpha: float [default=0.95]
-        confidence level for determination of bootstrap smaple size.
-    d: float [default=0.05]
-        sampling error for determination of boostrap smaple size.
-    B: 'auto' or int, optional [default='auto']
+    q: int [default=n_samples]
+        The number of predictors to randomly selecting in bootstrapping.
+    alpha: float [default=0.05]
+        Criteria used for selecting variables.
+    B: int, optional [default='auto']
         The number of bootstrap samples.
-        When to set 'auto', B is determined by statistical strategy(using alpha and d).
-    par_opt: Boolean [default=False]
-        When set to 'True', use parallel processing for bootstrapping.
-    max_workers: 'None' or int, optional [default='None']
-        The number of cores to use for parallel processing.
-        If max_workers is None or not given, it will default to the number of processors on the machine.
-
 
     Attributes
     ----------
@@ -52,19 +39,14 @@ class RecursiveRandomLasso:
         number of predictors.
     """
 
-    def __init__(self, q='auto', B='auto', L=30, random_state=None):      
+    def __init__(self, q, B, L=30, random_state=None):      
         self.q = q
         self.random_state = random_state
         self.L = L
         self.B = B
 
     def fit(self, X, y, sample_weight=None, alpha=0.05):
-        """Fit the model with Procedure 1 and Procedure 2.
-
-        Procedure 1: Compute importance scores for predictors.
-
-        Procedure 2: Compute coefficients and Select variables.
-
+        """
         Parameters
         ----------
         alpha : float [default=0.05]
